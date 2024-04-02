@@ -41,7 +41,7 @@ function App() {
     <div className="not-found">
       <h1>Not Found</h1>
       <p>We're sorry, but the page you requested could not be found.</p>
-      <button onClick={() => window.history.back()}>Go Back</button>
+      <button>Go Back</button>
     </div>
   );
 }
