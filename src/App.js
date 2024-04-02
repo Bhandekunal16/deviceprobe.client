@@ -3,17 +3,35 @@ import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
 
-
 function App() {
   useEffect(() => {
-    main();
+    getLocation();
   }, []);
 
-  function main() {
+  function getLocation() {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log(latitude, longitude);
+
+      const body = {
+        deviceLatitude: latitude,
+        deviceLongitude: longitude,
+      };
+      main(body);
+    });
+  }
+
+  function main(body) {
+    console.log(body)
     return axios
-      .get(`https://device-probe.vercel.app/`)
+      .post(`https://device-probe.vercel.app/`, {
+        deviceLatitude: body.deviceLatitude,
+        deviceLongitude: body.deviceLongitude,
+      })
       .then((response) => {
         return response.data;
+       
       })
       .catch((error) => {
         return { res: error, status: false, statusCode: 500, error: "error" };
