@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import "./App.css";
 import Trap from "./trap";
+import Dashboard from "./dashboard";
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +14,7 @@ function App() {
       <div>
         <Routes>
           <RouteV6 path="" element={<Trap />} />
+          <RouteV6 path="Dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

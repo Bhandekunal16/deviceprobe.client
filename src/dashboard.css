@@ -1,0 +1,57 @@
+.project-list-container {
+    display: flex;
+    justify-content: center;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin: 1%;
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+  
+  .project-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .project-table th,
+  .project-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .project-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .project-list-container {
+      display: flex;
+      justify-content: center;
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      margin: 1%;
+      overflow-y: auto;
+      max-height: 65vh;
+    }
+  }
+  
+  .project-list-background {
+    background-color: #f6f6f6;
+  }
+  
+  .dialog-box-container {
+    background-color: #ffffff;
+    width: fit-content;
+    height: fit-content;
+    padding: 1%;
+    border-radius: 8px;
+    position: absolute;
+    margin-left: 1%;
+  }
