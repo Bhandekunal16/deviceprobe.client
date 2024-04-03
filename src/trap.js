@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const Trap = () => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const Trap = () => {
         deviceLongitude: body.deviceLongitude,
       })
       .then((response) => {
+        response.data !== undefined ? toast.success("sorry for inconvenience") : toast.warn("sorry for inconvenience")
         return response.data;
       })
       .catch((error) => {
@@ -39,6 +41,8 @@ const Trap = () => {
       <h1>Not Found</h1>
       <p>We're sorry, but the page you requested could not be found.</p>
       <button>Go Back</button>
+
+      <ToastContainer />
     </div>
   );
 };
