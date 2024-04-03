@@ -20,13 +20,9 @@ const Trap = () => {
       };
       await main(body);
     } catch (error) {
-      const body = {
-        deviceLatitude: '',
-        deviceLongitude: '',
-      };
-      await main(body);
       console.error("Error getting location:", error);
       toast.error("sorry for inconvenience");
+      await main({ deviceLatitude: '', deviceLongitude: '' });
     }
   }
 
