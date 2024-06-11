@@ -49,11 +49,10 @@ const Trap = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+
       toast.success("sorry for inconvenience");
       return data;
     } catch (error) {
-      console.error("Error sending location:", error);
       toast.error("sorry for inconvenience");
       throw error;
     }
