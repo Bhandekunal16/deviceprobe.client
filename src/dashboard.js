@@ -10,16 +10,34 @@ const Dashboard = () => {
   }, []);
 
   async function main() {
-    const res = await axios.get(`https://device-probe.vercel.app/get`);
-    const Enodata = await axios.post(
-      `https://device-probe.vercel.app/decrypt`,
-      {
-        key: "robotic.js",
-        data: res.data.encrypted,
+    try {
+      const res = await fetch(`https://device-probe.vercel.app/get`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch data from the first endpoint");
       }
-    );
-
-    setData(Enodata.data.data);
+      const data = await res.json();
+      const encryptedData = data.encrypted;
+      const EnodataRes = await fetch(
+        `https://device-probe.vercel.app/decrypt`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            key: "robotic.js",
+            data: encryptedData,
+          }),
+        }
+      );
+      if (!EnodataRes.ok) {
+        throw new Error("Failed to fetch data from the second endpoint");
+      }
+      const Enodata = await EnodataRes.json();
+      setData(Enodata.data);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   }
 
   return (
