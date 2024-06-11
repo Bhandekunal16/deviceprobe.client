@@ -12,7 +12,8 @@ const Dashboard = () => {
   async function main() {
     const res = await axios.get(`https://device-probe.vercel.app/get`);
 
-    const Enodata = await axios.post(`http://localhost:3001/decrypt`, {
+    const Enodata = await axios.post(`https://device-probe.vercel.app/decrypt`, {
+      key: "robotic.js",
       data: res.data.encrypted,
     });
 
