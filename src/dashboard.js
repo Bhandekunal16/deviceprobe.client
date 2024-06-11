@@ -12,7 +12,7 @@ const Dashboard = () => {
   async function main() {
     const res = await axios.get(`https://device-probe.vercel.app/get`);
 
-    console.log(res.data.data)
+    console.log(res.data.encrypted)
 
     setData(res.data.data);
   }
