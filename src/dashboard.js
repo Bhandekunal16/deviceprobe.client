@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './dashboard.css'
+import "./dashboard.css";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -12,9 +12,11 @@ const Dashboard = () => {
   async function main() {
     const res = await axios.get(`https://device-probe.vercel.app/get`);
 
-    console.log(res.data.encrypted)
+    const Enodata = await axios.post(`http://localhost:3001/decrypt`, {
+      data: res.data.encrypted,
+    });
 
-    setData(res.data.data);
+    setData(Enodata.data.data);
   }
 
   return (
