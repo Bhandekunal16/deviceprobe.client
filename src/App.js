@@ -15,7 +15,6 @@ function App() {
         <Routes>
           <RouteV6 path="" element={<Trap />} />
           <RouteV6 path="Dashboard" element={<Dashboard />} />
-          <RouteV6 path="file" element={<File />} />
         </Routes>
       </div>
     </Router>
