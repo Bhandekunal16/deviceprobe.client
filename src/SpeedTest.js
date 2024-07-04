@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style/speedTest.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SpeedTest = () => {
   const [downloadSpeed, setDownloadSpeed] = useState(null);
@@ -21,7 +23,7 @@ const SpeedTest = () => {
       const speedMbps = (fileSize * 8) / (duration * 1024 * 1024);
       setDownloadSpeed(speedMbps.toFixed(2));
     } catch (error) {
-      console.error("Error during download speed test:", error);
+      toast.error("Error during download speed test:", error);
       setDownloadSpeed("Error");
     }
     setLoading(false);
@@ -32,6 +34,7 @@ const SpeedTest = () => {
     if (!intervalId) {
       const id = setInterval(testDownloadSpeed, 10000);
       setIntervalId(id);
+
     }
   };
 
@@ -56,6 +59,7 @@ const SpeedTest = () => {
   return (
     <div>
       <div className="speed-container">
+      <ToastContainer />
         <div className="speed-container-checker">
           <button onClick={toggleFlag} disabled={loading}>
             {flag ? "Testing..." : "Test Download Speed"}
