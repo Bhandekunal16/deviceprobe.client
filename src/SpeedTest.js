@@ -34,7 +34,6 @@ const SpeedTest = () => {
     if (!intervalId) {
       const id = setInterval(testDownloadSpeed, 10000);
       setIntervalId(id);
-
     }
   };
 
@@ -42,7 +41,7 @@ const SpeedTest = () => {
     clearInterval(intervalId);
     setIntervalId(null);
     setFlag(false);
-    toast.warn('speed testing stop');
+    toast.warn("speed testing process stop");
   };
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const SpeedTest = () => {
   return (
     <div>
       <div className="speed-container">
-      <ToastContainer />
+        <ToastContainer />
         <div className="speed-container-checker">
           <button onClick={toggleFlag} disabled={loading}>
             {flag ? "Testing..." : "Test Download Speed"}
