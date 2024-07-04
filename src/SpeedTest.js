@@ -23,7 +23,7 @@ const SpeedTest = () => {
       const speedMbps = (fileSize * 8) / (duration * 1024 * 1024);
       setDownloadSpeed(speedMbps.toFixed(2));
     } catch (error) {
-      toast.error("Error during download speed test:", error);
+      toast.error("your are offline");
       setDownloadSpeed("Error");
     }
     setLoading(false);
