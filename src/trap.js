@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { useEffect } from "react";
@@ -8,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const Trap = () => {
   useEffect(() => {
     getLocation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navigate = useNavigate();
