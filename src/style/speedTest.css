@@ -9,14 +9,14 @@
 }
 
 .speed-container-checker {
-  border: dotted 1px #d97f60;
+  border: dotted 1px #4d6f93;
   height: 50vh;
   width: 50vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 8px;
-  color: #d97f60;
+  color: #4d6f93;
 }
 
 .speed-container-checker button {
@@ -29,6 +29,7 @@
   filter: blur(1%);
 }
 
-/* .speed-container-checker h1 {
-    border-color: or;
-} */
+.speed-container-checker h2 {
+    background-color: #dce9eb;
+    color: #313d5b;
+}
