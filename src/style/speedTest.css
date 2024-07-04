@@ -25,4 +25,5 @@
   border-radius: 8px;
   border-color: transparent;
   color: #4470a3;
+  filter: blur(1%);
 }
