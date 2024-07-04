@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./dashboard.css";
+import "./style/dashboard.css";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);

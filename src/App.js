@@ -1,4 +1,4 @@
-import "./App.css";
+import "./style/App.css";
 import Trap from "./trap";
 import Dashboard from "./dashboard";
 import {
