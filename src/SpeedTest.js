@@ -23,10 +23,11 @@ const SpeedTest = () => {
       const speedMbps = (fileSize * 8) / (duration * 1024 * 1024);
       setDownloadSpeed(speedMbps.toFixed(2));
     } catch (error) {
-      toast.error("your are offline");
+      toast.error("An error occurred while testing download speed.");
       setDownloadSpeed("Error");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const startSpeedTest = () => {
@@ -41,6 +42,7 @@ const SpeedTest = () => {
     clearInterval(intervalId);
     setIntervalId(null);
     setFlag(false);
+    toast.warn("Speed testing process stopped.");
   };
 
   useEffect(() => {
@@ -48,7 +50,6 @@ const SpeedTest = () => {
       startSpeedTest();
     } else {
       stopSpeedTest();
-      toast.warn("speed testing process stop");
     }
   }, [flag]);
 
