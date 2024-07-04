@@ -63,11 +63,7 @@ const SpeedTest = () => {
   };
 
   useEffect(() => {
-    if (flag) {
-      startSpeedTest();
-    } else {
-      stopSpeedTest();
-    }
+    flag ? startSpeedTest() : stopSpeedTest();
   }, [flag]);
 
   const toggleFlag = () => {
