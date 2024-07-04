@@ -32,8 +32,6 @@ const SpeedTest = () => {
       const endTime = new Date().getTime();
       const totalDuration = (endTime - startTime) / 1000;
 
-      console.log(responses)
-
       responses.forEach((response) => {
         const fileSize = response.headers["content-length"];
         totalSize += parseInt(fileSize, 10);
