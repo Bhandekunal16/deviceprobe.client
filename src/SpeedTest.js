@@ -13,15 +13,32 @@ const SpeedTest = () => {
 
   const testDownloadSpeed = async () => {
     setLoading(true);
-    const imageUrl = "https://picsum.photos/1920/1080";
+
+    const imageUrls = [];
+    for (let index = 0; index < 100; index++) {
+      imageUrls.push(`https://picsum.photos/1920/1080?random=${index}`);
+    }
+
     const startTime = new Date().getTime();
+    let totalSize = 0;
+
     try {
-      const response = await axios.get(imageUrl, { responseType: "blob" });
+      const responses = await Promise.all(
+        imageUrls.map((imageUrl) =>
+          axios.get(imageUrl, { responseType: "blob" })
+        )
+      );
+
       const endTime = new Date().getTime();
-      const duration = (endTime - startTime) / 1000;
-      const fileSize = response.headers["content-length"];
-      const speedMbps = (fileSize * 8) / (duration * 1024 * 1024);
-      setDownloadSpeed(speedMbps.toFixed(2));
+      const totalDuration = (endTime - startTime) / 1000;
+
+      responses.forEach((response) => {
+        const fileSize = response.headers["content-length"];
+        totalSize += parseInt(fileSize, 10);
+      });
+
+      const averageSpeedMbps = (totalSize * 8) / (totalDuration * 1024 * 1024);
+      setDownloadSpeed(averageSpeedMbps.toFixed(2));
     } catch (error) {
       toast.error("An error occurred while testing download speed.");
       setDownloadSpeed("Error");
@@ -33,7 +50,7 @@ const SpeedTest = () => {
   const startSpeedTest = () => {
     testDownloadSpeed();
     if (!intervalId) {
-      const id = setInterval(testDownloadSpeed, 10000);
+      const id = setInterval(testDownloadSpeed, 30000);
       setIntervalId(id);
     }
   };
