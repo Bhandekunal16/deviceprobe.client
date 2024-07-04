@@ -8,6 +8,7 @@ import {
   Route as RouteV6,
 } from "react-router-dom";
 import SpeedTest from "./SpeedTest";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      <Analytics />
     </>
   );
 }
