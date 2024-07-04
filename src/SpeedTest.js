@@ -30,7 +30,7 @@ const SpeedTest = () => {
   const startSpeedTest = () => {
     testDownloadSpeed();
     if (!intervalId) {
-      const id = setInterval(testDownloadSpeed, 5000);
+      const id = setInterval(testDownloadSpeed, 10000);
       setIntervalId(id);
     }
   };
