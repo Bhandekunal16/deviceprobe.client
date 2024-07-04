@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 import "./App.css";
 import Trap from "./trap";
 import Dashboard from "./dashboard";
