@@ -3,12 +3,19 @@ import React from "react";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Trap = () => {
   useEffect(() => {
     getLocation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/speed");
+  };
 
   async function getLocation() {
     try {
@@ -63,7 +70,7 @@ const Trap = () => {
       <div className="not-found">
         <h1>Not Found</h1>
         <p>We're sorry, but the page you requested could not be found.</p>
-        <button>Check internet speed</button>
+        <button onClick={handleClick}>Check internet speed</button>
       </div>
       <ToastContainer />
     </>
