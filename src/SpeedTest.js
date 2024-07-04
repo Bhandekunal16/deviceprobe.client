@@ -41,7 +41,6 @@ const SpeedTest = () => {
     clearInterval(intervalId);
     setIntervalId(null);
     setFlag(false);
-    toast.warn("speed testing process stop");
   };
 
   useEffect(() => {
@@ -49,6 +48,7 @@ const SpeedTest = () => {
       startSpeedTest();
     } else {
       stopSpeedTest();
+      toast.warn("speed testing process stop");
     }
   }, [flag]);
 
