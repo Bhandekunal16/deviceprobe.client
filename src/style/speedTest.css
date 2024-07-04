@@ -9,7 +9,7 @@
 }
 
 .speed-container-checker {
-  border: dotted 1px #4d6f93;
+  border: solid 1px #000;
   height: 50vh;
   width: 50vw;
   display: flex;
@@ -32,4 +32,10 @@
 .speed-container-checker h2 {
     background-color: #dce9eb;
     color: #313d5b;
+}
+
+@media (max-width : 600px) {
+    .speed-container-checker {
+        width: 90vw;
+    }
 }
