@@ -1,0 +1,28 @@
+.speed-container {
+  background-image: url("../../public/2151076472.jpg");
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.speed-container-checker {
+  border: dotted 1px #000;
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.speed-container-checker button {
+  margin-top: 10%;
+  background-color: #d0dde4;
+  padding: 1%;
+  border-radius: 8px;
+  border-color: transparent;
+  color: #4470a3;
+}
