@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./style/speedTest.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,17 +24,24 @@ const SpeedTest = () => {
     try {
       const responses = await Promise.all(
         imageUrls.map((imageUrl) =>
-          axios.get(imageUrl, { responseType: "blob" })
+          fetch(imageUrl).then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `Failed to fetch ${imageUrl}: ${response.statusText}`
+              );
+            }
+            return response.blob();
+          })
         )
       );
 
       const endTime = new Date().getTime();
       const totalDuration = (endTime - startTime) / 1000;
 
-      responses.forEach((response) => {
-        const fileSize = response.headers["content-length"];
-        totalSize += parseInt(fileSize, 10);
-      });
+      for (const response of responses) {
+        const fileSize = response.size;
+        totalSize += fileSize;
+      }
 
       const averageSpeedMbps = (totalSize * 8) / (totalDuration * 1024 * 1024);
       setDownloadSpeed(averageSpeedMbps.toFixed(2));
