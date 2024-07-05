@@ -1,30 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { useEffect, useCallback } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Trap = () => {
-  // useEffect(() => {
-  //   getLocation();
-  // }, [getLocation]);
-
-  // async function getLocation() {
-  //   try {
-  //     const position = await getCurrentPosition();
-  //     const { latitude, longitude } = position.coords;
-  //     const body = {
-  //       deviceLatitude: latitude,
-  //       deviceLongitude: longitude,
-  //     };
-  //     await main(body);
-  //   } catch (error) {
-  //     console.error("Error getting location:", error);
-  //     toast.error("sorry for inconvenience");
-  //     await main({ deviceLatitude: "", deviceLongitude: "" });
-  //   }
-  // }
-
   const getLocation = useCallback(async () => {
     try {
       const position = await getCurrentPosition();
