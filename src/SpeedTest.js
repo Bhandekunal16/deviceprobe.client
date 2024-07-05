@@ -102,7 +102,7 @@ const SpeedTest = () => {
             {downloadSpeed !== null && (
               <h2>
                 Average downloading Speed:{" "}
-                {downloadSpeed === "Error" ? "Error" : ` ${downloadSpeed} Mbps`}
+                {downloadSpeed === "Error" ? "Error" : ` ${downloadSpeed} MBps`}
               </h2>
             )}
           </div>
