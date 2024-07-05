@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./style/speedTest.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,24 +52,35 @@ const SpeedTest = () => {
     }
   };
 
-  const startSpeedTest = () => {
+  const startSpeedTest = useCallback(() => {
     testDownloadSpeed();
     if (!intervalId) {
       const id = setInterval(testDownloadSpeed, 30000);
       setIntervalId(id);
     }
-  };
+  }, [intervalId]);
 
-  const stopSpeedTest = () => {
-    clearInterval(intervalId);
-    setIntervalId(null);
+  const stopSpeedTest = useCallback(() => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+    }
     setFlag(false);
     toast.warn("Speed testing process stopped.");
-  };
+  }, [intervalId]);
 
   useEffect(() => {
-    flag ? startSpeedTest() : stopSpeedTest();
-  }, [flag]);
+    if (flag) {
+      startSpeedTest();
+    } else {
+      stopSpeedTest();
+    }
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [flag, startSpeedTest, stopSpeedTest, intervalId]);
 
   const toggleFlag = () => {
     setFlag(!flag);
