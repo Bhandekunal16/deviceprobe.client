@@ -45,8 +45,8 @@ const SpeedTest = () => {
       const averageSpeedMbps = (totalSize * 8) / (totalDuration * 1024 * 1024);
       setDownloadSpeed(averageSpeedMbps.toFixed(2));
     } catch (error) {
-      toast.error("An error occurred while testing download speed.");
-      setDownloadSpeed("Error");
+      toast.error("An error occurred while testing download speed." + error);
+      setDownloadSpeed(error);
     } finally {
       setLoading(false);
     }
@@ -54,10 +54,7 @@ const SpeedTest = () => {
 
   const startSpeedTest = useCallback(() => {
     testDownloadSpeed();
-    if (!intervalId) {
-      const id = setInterval(testDownloadSpeed, 30000);
-      setIntervalId(id);
-    }
+    if (!intervalId) setIntervalId(setInterval(testDownloadSpeed, 30000));
   }, [intervalId]);
 
   const stopSpeedTest = useCallback(() => {
@@ -71,7 +68,6 @@ const SpeedTest = () => {
 
   useEffect(() => {
     flag ? startSpeedTest() : stopSpeedTest();
-
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
