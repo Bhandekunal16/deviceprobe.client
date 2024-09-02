@@ -74,9 +74,7 @@ const SpeedTest = () => {
     };
   }, [flag, startSpeedTest, stopSpeedTest, intervalId]);
 
-  const toggleFlag = () => {
-    setFlag(!flag);
-  };
+  const toggleFlag = () => setFlag(!flag);
 
   return (
     <div>
