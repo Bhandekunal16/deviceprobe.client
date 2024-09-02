@@ -13,6 +13,7 @@ const SpeedTest = () => {
     setLoading(true);
 
     const imageUrls = [];
+
     for (let index = 0; index < 100; index++) {
       imageUrls.push(`https://picsum.photos/1920/1080?random=${index}`);
     }
