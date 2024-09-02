@@ -70,15 +70,10 @@ const SpeedTest = () => {
   }, [intervalId]);
 
   useEffect(() => {
-    if (flag) {
-      startSpeedTest();
-    } else {
-      stopSpeedTest();
-    }
+    flag ? startSpeedTest() : stopSpeedTest();
+
     return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
+      if (intervalId) clearInterval(intervalId);
     };
   }, [flag, startSpeedTest, stopSpeedTest, intervalId]);
 
