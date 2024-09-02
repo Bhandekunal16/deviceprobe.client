@@ -8,11 +8,10 @@ const Trap = () => {
     try {
       const position = await getCurrentPosition();
       const { latitude, longitude } = position.coords;
-      const body = {
+      await main({
         deviceLatitude: latitude,
         deviceLongitude: longitude,
-      };
-      await main(body);
+      });
     } catch (error) {
       console.error("Error getting location:", error);
       toast.error("Sorry for the inconvenience");
