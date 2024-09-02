@@ -57,11 +57,11 @@ const Trap = () => {
 
   return (
     <>
-      <div className="not-found">
+      <iv className="not-found">
         <h1>Not Found</h1>
         <p>We're sorry, but the page you requested could not be found.</p>
         <button>Go Back</button>
-      </div>
+      </iv>
       <ToastContainer />
     </>
   );
