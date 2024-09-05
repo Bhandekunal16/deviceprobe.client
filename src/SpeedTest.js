@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./style/speedTest.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { custom } from "robotic.js/app.mjs";
 
 const SpeedTest = () => {
   const [downloadSpeed, setDownloadSpeed] = useState(null);
